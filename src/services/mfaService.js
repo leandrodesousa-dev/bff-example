@@ -4,11 +4,11 @@ const generateMfaSecret = () => {
   return speakeasy.generateSecret();
 };
 
-const verifyMfaToken = (secret, token) => {
+const verifyMfaToken = (secret, mfaToken) => {
   return speakeasy.totp.verify({
     secret: secret,
     encoding: 'base32',
-    token: token,
+    token: mfaToken,
   });
 };
 

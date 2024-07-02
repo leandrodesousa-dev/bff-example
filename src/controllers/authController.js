@@ -12,10 +12,10 @@ const register = async (req, res) => {
 };
 
 const login = async (req, res) => {
-  const { username, password } = req.body;
+  const { username, password, mfaToken } = req.body;
 
   try {
-    const { token, mfaRequired } = await authenticateUser(username, password);
+    const { token, mfaRequired } = await authenticateUser(username, password, mfaToken);
     res.json({ token, mfaRequired });
   } catch (error) {
     res.status(401).json({ message: error.message });
