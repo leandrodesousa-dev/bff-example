@@ -1,10 +1,25 @@
-const login = (req, res) => {
+const { registerUser, authenticateUser } = require('../services/authService');
+
+const register = async (req, res) => {
   const { username, password } = req.body;
-  if (username === 'admin' && password === 'password') {
-    res.json({ token: 'your-secret-token' });
-  } else {
-    res.status(401).json({ message: 'Invalid credentials' });
+
+  try {
+    await registerUser(username, password);
+    res.status(201).json({ message: 'User registered successfully' });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
   }
 };
 
-module.exports = { login };
+const login = async (req, res) => {
+  const { username, password } = req.body;
+
+  try {
+    const { token, mfaRequired } = await authenticateUser(username, password);
+    res.json({ token, mfaRequired });
+  } catch (error) {
+    res.status(401).json({ message: error.message });
+  }
+};
+
+module.exports = { register, login };
