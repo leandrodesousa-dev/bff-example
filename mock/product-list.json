@@ -1,0 +1,6 @@
+{
+  "products": [
+    { "id": 1, "name": "Steamdeck", "price": 2900 },
+    { "id": 2, "name": "Iphone 15", "price": 5678.99 }
+  ]
+}
