@@ -53,3 +53,7 @@
    ```bash
    touch index.js
    ```
+4. Para executar o projeto:
+   ```bash
+   node index.js
+   ```
